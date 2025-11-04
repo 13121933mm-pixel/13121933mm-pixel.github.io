@@ -85,23 +85,23 @@
 
         .tip-window {
             position: fixed;
-            width: 200px; /* 原来的二分之一 (250/2=125) */
-            min-height: 48px; /* 原来的二分之一 (60/2=30) */
-            border-radius: 8px; /* 调整圆角以适应更小的窗口 */
+            width: 200px; /* 原来的0.8倍 (250 * 0.8=200) */
+            min-height: 48px; /* 原来的0.8倍 (60 * 0.8=48) */
+            border-radius: 10px; /* 调整圆角以适应更小的窗口 */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 8px; /* 减少内边距 */
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            padding: 12px; /* 调整内边距 */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 1000;
-            font-size: 0.9rem; /* 减小字体大小以适应更小的窗口 */
+            font-size: 1.2rem; /* 调整字体大小 */
             font-weight: bold;
             animation: fadeIn 0.3s ease;
             cursor: pointer;
             user-select: none;
-            line-height: 1.2;
-            word-wrap: break-word; /* 确保长文本可以换行 */
+            line-height: 1.3;
+            word-wrap: break-word; /* 确保文本换行 */
         }
 
         @keyframes fadeIn {
@@ -110,7 +110,7 @@
         }
 
         .counter {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin: 15px 0;
             color: #4a6fa5;
             font-weight: bold;
@@ -127,6 +127,7 @@
             margin-top: 20px;
             max-width: 500px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 0.95rem;
         }
 
         footer {
@@ -135,9 +136,20 @@
             font-size: 0.9rem;
         }
 
+        /* 移动端优化 */
         @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
             h1 {
                 font-size: 1.8rem;
+                margin: 15px 0;
+            }
+
+            .description, .instructions {
+                padding: 12px;
+                font-size: 0.9rem;
             }
 
             button {
@@ -146,15 +158,45 @@
             }
 
             .tip-window {
-                width: 140px; /* 调整移动端显示 */
-                font-size: 0.8rem;
+                width: 160px; /* 移动端调整为0.8倍 (200 * 0.8=160) */
+                font-size: 1rem;
+                min-height: 40px;
+                padding: 10px;
+            }
+
+            .counter {
+                font-size: 1.1rem;
+                padding: 8px 16px;
+            }
+        }
+
+        /* 小屏幕手机优化 */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .tip-window {
+                width: 140px;
+                font-size: 0.9rem;
+                min-height: 36px;
+                padding: 8px;
+            }
+
+            .controls {
+                gap: 10px;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>记得想我</h1>
+        <h1>记得想03哦</h1>
 
         <div class="description">
             <p>区区这些行代码，写不尽我对你的思念</p>
@@ -184,7 +226,7 @@
             "多喝水哦~", "保持微笑呀", "每天都要元气满满",
             "记得吃水果", "保持好心情", "好好爱自己",
             "我想你了", "梦想成真", "期待下一次见面",
-            "抱抱你", "顺顺利利", "早点休息",
+            "金榜题名", "顺顺利利", "早点休息",
             "愿所有烦恼都消失", "别熬夜", "今天过得开心嘛",
             "天冷了，多穿衣服", "记得按时吃饭", "你是最棒的",
             "一切都会好起来的", "保持积极心态", "注意休息",
@@ -192,7 +234,7 @@
             "保持健康", "笑口常开", "心想事成", "万事如意",
             "平安喜乐", "好运连连", "前程似锦", "幸福美满",
             "希望你睡个好觉","一直在一起","心里都是你",
-            "最爱你"
+            "最爱你了"
         ];
 
         // 背景颜色列表
@@ -257,9 +299,14 @@
             tipWindow.textContent = randomTip;
             tipWindow.style.backgroundColor = randomColor;
 
+            // 添加到页面后再获取实际尺寸
+            document.body.appendChild(tipWindow);
+
+            // 获取弹窗的实际尺寸
+            const windowWidth = tipWindow.offsetWidth;
+            const windowHeight = tipWindow.offsetHeight;
+
             // 随机位置（确保在视口内）
-            const windowWidth = 200; // 固定宽度（原来的二分之一）
-            const windowHeight = 48; // 固定高度（原来的二分之一）
             const maxX = window.innerWidth - windowWidth;
             const maxY = window.innerHeight - windowHeight;
 
@@ -273,9 +320,6 @@
             tipWindow.addEventListener('click', function() {
                 this.remove();
             });
-
-            // 添加到页面
-            document.body.appendChild(tipWindow);
 
             // 更新计数器
             tipCount++;
@@ -330,7 +374,7 @@
             // 1秒后重置触摸计数
             setTimeout(() => {
                 touchCount = 0;
-            }, 1000);
+            }, 800);
         });
     </script>
 </body>
