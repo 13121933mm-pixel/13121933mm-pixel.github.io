@@ -85,8 +85,8 @@
 
         .tip-window {
             position: fixed;
-            width: 150px; /* 原来的二分之一 (250/2=125) */
-            min-height: 36px; /* 原来的二分之一 (60/2=30) */
+            width: 200px; /* 原来的二分之一 (250/2=125) */
+            min-height: 48px; /* 原来的二分之一 (60/2=30) */
             border-radius: 8px; /* 调整圆角以适应更小的窗口 */
             display: flex;
             align-items: center;
@@ -258,8 +258,8 @@
             tipWindow.style.backgroundColor = randomColor;
 
             // 随机位置（确保在视口内）
-            const windowWidth = 150; // 固定宽度（原来的二分之一）
-            const windowHeight = 36; // 固定高度（原来的二分之一）
+            const windowWidth = 200; // 固定宽度（原来的二分之一）
+            const windowHeight = 48; // 固定高度（原来的二分之一）
             const maxX = window.innerWidth - windowWidth;
             const maxY = window.innerHeight - windowHeight;
 
