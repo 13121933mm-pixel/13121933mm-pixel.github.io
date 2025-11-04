@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>记得想我</title>
+    <title>03想你啦</title>
     <style>
         * {
             margin: 0;
@@ -97,7 +97,7 @@
             z-index: 1000;
             font-size: 1.2rem; /* 调整字体大小 */
             font-weight: bold;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.2s ease; /* 加快动画速度 */
             cursor: pointer;
             user-select: none;
             line-height: 1.3;
@@ -162,6 +162,7 @@
                 font-size: 1rem;
                 min-height: 40px;
                 padding: 10px;
+                animation: fadeIn 0.15s ease; /* 移动端动画更快 */
             }
 
             .counter {
@@ -181,6 +182,7 @@
                 font-size: 0.9rem;
                 min-height: 36px;
                 padding: 8px;
+                animation: fadeIn 0.1s ease; /* 小屏幕动画更快 */
             }
 
             .controls {
@@ -269,8 +271,8 @@
             tipCount = 0;
             tipCountElement.textContent = tipCount;
 
-            // 设置弹窗间隔为150ms（原来的2倍速度）
-            tipInterval = setInterval(createTipWindow, 150);
+            // 设置弹窗间隔为75ms（原来150ms的一半）
+            tipInterval = setInterval(createTipWindow, 75);
         });
 
         // 停止弹窗
@@ -325,11 +327,11 @@
             tipCount++;
             tipCountElement.textContent = tipCount;
 
-            // 添加轻微浮动动画
+            // 添加轻微浮动动画（加快动画速度）
             setTimeout(() => {
-                tipWindow.style.transition = 'transform 0.3s ease';
+                tipWindow.style.transition = 'transform 0.2s ease';
                 tipWindow.style.transform = 'translateY(-3px)';
-            }, 50);
+            }, 30);
         }
 
         // 空格键关闭所有弹窗
@@ -374,7 +376,7 @@
             // 1秒后重置触摸计数
             setTimeout(() => {
                 touchCount = 0;
-            }, 800);
+            }, 1000);
         });
     </script>
 </body>
